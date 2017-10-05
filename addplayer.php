@@ -244,7 +244,7 @@
                                                 <label class="control-label " id="label-addplayer" >Release Date</label>
                                                 <input type="date" class="form-control" size="100" ng-model="release_date">
                                             </div>
-                                            <div class="form-group form-inline">
+                                            <div class="form-group">
                                                 <label class="control-label " id="label-addplayer" >Release Date</label>
                                                 <input type="date" class="form-control" size="100" ng-model="release_date">
                                             </div>
