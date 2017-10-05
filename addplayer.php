@@ -244,6 +244,7 @@
                                                 <label class="control-label " id="label-addplayer" >Release Date</label>
                                                 <input type="date" class="form-control" size="100" ng-model="release_date">
                                             </div>
+
                                             <div class="asdsadadas">
                                                 <label class="control-label " id="label-addplayer" >Release Date</label>
                                                 <input type="date" class="form-control" size="100" ng-model="release_date">
