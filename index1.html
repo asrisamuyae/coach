@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Coach Gadgets</title>
+
+	<!-- Google Fonts -->
+	<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700|Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="css/animate.css">
+	<!-- Custom Stylesheet -->
+	<link rel="stylesheet" href="css/style.css">
+	<!-- Jquery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<!-- angular -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular-cookies.js"></script>	
+	<script src="js/main.angular.js"></script>
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+	<div class="container">
+		<div class="top">
+			<h1 id="title" class="hidden"><span id="logo"><span>COACH GADGETS</span></span></h1>
+		</div>
+		<!-- <div class="login-box animated fadeInUp">
+			<div class="box-header">
+				<h2>Log In</h2>
+			</div>
+			<label for="username"  >Username</label>
+			<br/>
+			<input type="text" id="username" ng-model="user">
+			<br/>
+			<label for="password">Password</label>
+			<br/>
+			<input type="password" id="password" ng-model="pass">
+			<br/>
+			<button type="submit" id="submit" ng-click="login()">Sign In</button>
+			<br/>
+			<a href="#"><p class="small">Forgot your password?</p></a>
+
+			<div>
+				<span>username</span>
+				<span id="ssss" ng-bind="username"></span>
+			</div>
+			<div>
+				<span>password</span>
+				<span id="ssss" ng-bind="password"></span>
+			</div>
+			
+		</div> -->
+	</div>
+</body>
+
+<script>
+	$(document).ready(function () {
+    	$('#logo').addClass('animated fadeInDown');
+    	$("input:text:visible:first").focus();
+
+    	$("#submit").click(function(event) {
+    		/* Act on the event */
+    	});
+    // 	$("#submit").click(function(){
+    // 		var pass = $("#password").val()
+    // 		var username = $("#username").val()
+    // 		//alert("The paragraph was clicked.");
+    // 		console.log(username)
+    // 		console.log(pass)
+    // 		var markers = [{ "position": "128.3657142857143", "markerPosition": "7" },
+    //            { "position": "235.1944023323615", "markerPosition": "19" },
+    //            { "position": "42.5978231292517", "markerPosition": "-3" }];
+
+    // 		$.ajax({
+		  //       url: "php/connect.php",
+		  //       type: "post",
+		  //       data: JSON.stringify({ username: markers}),
+		  //       contentType: "application/json; charset=utf-8", 
+		  //       dataType: "json",
+			 //    success: function(data){
+			 //    	alert(data);
+			 //    },
+			 //    failure: function(errMsg) {
+			 //        alert(errMsg);
+			 //    }
+
+
+    // });
+
+		//});
+	});
+	$('#username').focus(function() {
+		$('label[for="username"]').addClass('selected');
+	});
+	$('#username').blur(function() {
+		$('label[for="username"]').removeClass('selected');
+	});
+	$('#password').focus(function() {
+		$('label[for="password"]').addClass('selected');
+	});
+	$('#password').blur(function() {
+		$('label[for="password"]').removeClass('selected');
+	});
+</script>
+
+</html>
