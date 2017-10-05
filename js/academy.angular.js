@@ -2,6 +2,7 @@ var app = angular.module('myApp', ['ngCookies']);
 app.controller('myCtrl', function($scope,$http,$location,$window ,$filter) {
 
 	$scope.test = "TEST";
+	$scope.addgoal = false;
 	//alert('aaaaa')
 	
 	$scope.login = function(){
@@ -47,6 +48,76 @@ app.controller('myCtrl', function($scope,$http,$location,$window ,$filter) {
 		$window.location.href = 'index.php';
 	}
 	$scope.academyclass = [];
+	$scope.checkx = '';
+	$scope.changeincre = function(item){
+		console.log(item)
+		console.log(item.id)
+		// $('#showinput'+item.id).css("display", "inline-block");
+		// $('#showsave'+item.id).css("display", "inline-block");
+
+		// $('#showedit'+item.id).css("display", "none");
+		$scope.goalid = item.id;
+		if ($scope.checkx == '' ) {
+			console.log('in case null')
+			
+
+			$('#showinput'+item.id).css("display", "block");
+			$('#showsave'+item.id).css("display", "block");
+			$('#showedit'+item.id).css("display", "none");
+			$scope.checkx = item.id;
+		}
+		else if (item.id != $scope.checkx) {
+			console.log('in case x==checkx')			
+			$('#showinput'+$scope.checkx).css("display", "none");
+			$('#showsave'+$scope.checkx).css("display", "none");
+			$('#showedit'+$scope.checkx).css("display", "block");
+
+			$('#showinput'+item.id).css("display", "block");
+			$('#showsave'+item.id).css("display", "block");
+			$('#showedit'+item.id).css("display", "none");
+			$scope.checkx = item.id;
+		}
+		else{
+			$('#showinput'+item.id).css("display", "block");
+			$('#showsave'+item.id).css("display", "block");
+			$('#showedit'+item.id).css("display", "none");
+			$scope.checkx = item.id;
+		}
+		//$scope.addgoal+ = true;
+	}
+
+	$scope.saveaddgoal = function(x){
+
+		$('#showinput'+x).css("display", "none");
+		$scope.inputgoal = $('#showinput'+x).val();
+
+		$('#showsave'+x).css("display", "none");
+
+		$('#showedit'+x).css("display", "block");
+
+		//$scope.addgoal = false;
+		console.log(x)
+		console.log($scope.inputgoal)
+
+		$http({
+	                        method : 'POST',
+	                        url : 'php/updateGoal.php',
+	                        data: $.param({ 'id': x
+	                        	,'goal': $scope.inputgoal
+	                    	}),
+	                        headers : {'Content-Type': 'application/x-www-form-urlencoded'} 
+	                }).success(function(res){
+	                        console.log(res);
+	                         angular.forEach($scope.academyclass, function(data){
+						      		if (data.id == x) {
+						      			data.goal = $scope.inputgoal;
+						      			$scope.inputgoal = '';
+						      		}
+						   		});
+	                        //$window.location.reload();
+
+	                 });
+	}
 	$scope.getacademy = function(x){
 		$scope.academyclass = [];
 		console.log(x);
@@ -69,7 +140,7 @@ app.controller('myCtrl', function($scope,$http,$location,$window ,$filter) {
 		}
 		// console.log('======================================================');
 		
-		 // angular.forEach($scope.academydata, function(data, i){
+		 // angular.forEach($scope.academyclass, function(data, i){
    //    		console.log(data)
    // 		});
 

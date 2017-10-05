@@ -141,6 +141,7 @@
                                     <table class="table">
                                         <thead class="text-primary">
 	                                        <tr>
+	                                        <th></th>
 	                                            <th>Player Name</th>
 	                                			<th>Birthday</th>
 	                                			<th>Position</th>
@@ -153,11 +154,14 @@
 	                                			<th>Sign Date</th>
 	                                			<th>Release Date</th>
 	                                			<th>Post Date</th>
+	                                			<th>Team</th>
+	                                			<th>Goal</th>
 	                                        </tr>
 	                                    </thead>
                                         <tbody>
                                         	
                                             <tr ng-repeat="item in academyclass">
+                                            <td ng-bind="$index+1"></td>
                                                	<td><span ng-bind="item.player_name"></span></td>
 	                                			<td><span ng-bind="item.birthday "></span></td>
 	                                			<td><span ng-bind="item.position"></span></td>
@@ -170,7 +174,12 @@
 	                                			<td><span ng-bind="item.sign_date"></span></td>
 	                                			<td><span ng-bind="item.release_date"></span></td>
 	                                			<td><span ng-bind="item.post_date*1000 | date:'dd-MM-yyyy h:mm:ss'"></span></td>
-	                                			
+	                                			<td class="col-md-3"><span ng-bind="item.team_class"></span></td>
+	                                			<td><input class="form-control" type="text" ng-value="item.goal"  id="showinput{{item.id}}" style="display: none;">
+	                                			<div ng-click="saveaddgoal(goalid)" ng-model="goalid" id="showsave{{item.id}}" style="display: none;    background: #4caf50;text-align: center; padding: 5px 15px; border-radius: 4px;margin-top: 10px;color: #fff">Save</div>
+	                                			<button ng-click="changeincre(item)" ng-bind="item.goal" id="showedit{{item.id}}" ></button>
+
+	                                			</td>
                                             </tr>
                                             
                                         </tbody>

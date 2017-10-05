@@ -176,7 +176,7 @@
 		<div class="card-content" style="margin-top: 60px;">
                                  
                                     
-								<div class="row" align="center">
+								<div class="row" >
 								<div class="col-md-12" >
 									
                                             <div class="form-group form-inline">
@@ -187,47 +187,52 @@
                                         
                                         
                                         <div class="form-group form-inline">
-                                                <label class="control-label " id="label-addplayer">Position</label>
-                                                <input type="text" class="form-control" size="100" ng-model="f">
+                                                <label class="control-label " id="label-addplayer">position</label>
+                                                <input type="text" class="form-control" size="100" ng-model="position">
                                             </div>
                                         
                                         
                                             
                                             <div class="form-group form-inline">
                                                 <label class="control-label " id="label-addplayer">Foot</label>
-                                                <input type="text" class="form-control " size="100" ng-model="g">
+                                                <input type="text" class="form-control " size="100" ng-model="foot">
                                             </div>
                                        
                                         
                                            
                                             <div class="form-group form-inline">
                                                 <label class="control-label " id="label-addplayer">Height</label>
-                                                <input type="text" class="form-control" size="100" ng-model="h">
+                                                <input type="text" class="form-control" size="100" ng-model="height">
                                             </div>
 
                                             <div class="form-group form-inline">
                                                 <label class="control-label " id="label-addplayer">Weight</label>
-                                                <input type="text" class="form-control" size="100" ng-model="f">
+                                                <input type="text" class="form-control" size="100" ng-model="weight">
                                             </div>
                                         
                                         
                                             
                                             <div class="form-group form-inline">
                                                 <label class="control-label " id="label-addplayer">Address</label>
-                                                <input type="text" class="form-control " size="100" ng-model="g">
+                                                <input type="text" class="form-control " size="100" ng-model="address">
                                             </div>
                                        
                                         
                                            
                                             <div class="form-group form-inline">
                                                 <label class="control-label " id="label-addplayer">Phone</label>
-                                                <input type="text" class="form-control" size="100" ng-model="h">
+                                                <input type="text" class="form-control" size="100" ng-model="phone">
                                             </div>
 
 
                                             <div class="form-group form-inline">
                                                 <label class="control-label " id="label-addplayer">Team</label>
-                                                <input type="text" class="form-control" size="100" ng-model="h">
+                                                <input type="text" class="form-control" size="100" ng-model="team">
+                                            </div>
+                                            
+                                            <div class="form-group form-inline">
+                                                <label class="control-label " id="label-addplayer">School</label>
+                                                <input type="text" class="form-control" size="100" ng-model="school">
                                             </div>
 
                                             <div class="form-group form-inline">
@@ -245,10 +250,7 @@
                                                 <input type="date" class="form-control" size="100" ng-model="release_date">
                                             </div>
 
-                                            <div class="asdsadadas">
-                                                <label class="control-label " id="label-addplayer" >Release Date</label>
-                                                <input type="date" class="form-control" size="100" ng-model="release_date">
-                                            </div>
+                                            
                                       
                                         
                                            
@@ -497,47 +499,60 @@ app.controller('myCtrl', function($scope,$http,$location,$window,$filter) {
 	}
 	$scope.saveaddplayer = function(){
 		console.log($scope.name)
-		var date =  $filter('date')(new Date($scope.birthday), 'dd-mm-yyyy');
-		var sign_date =  $filter('date')(new Date($scope.sign_date), 'dd-mm-yyyy');
-		var release_date =  $filter('date')(new Date($scope.release_date), 'dd-mm-yyyy');
+		var date =  $filter('date')(new Date($scope.birthday), 'dd-MM-yyyy');
+		var sign_date =  $filter('date')(new Date($scope.sign_date), 'dd-MM-yyyy');
+        var release_date =  $filter('date')(new Date($scope.release_date), 'dd-MM-yyyy');
+		var birthday =  $filter('date')(new Date($scope.birthday), 'dd-MM-yyyy');
 		
 		//$scope.birthday = 
 		console.log(date)
 		console.log($scope.cname)
 		console.log(sign_date)
-		console.log(release_date)
+        console.log($scope.weight)
+        console.log($scope.height)
+        console.log($scope.foot)
+        console.log($scope.address)
+        console.log($scope.position)
+        console.log($scope.phone)
+        console.log($scope.team)
+        console.log($scope.school)
+        console.log(birthday)
 
-	// $scope.logo = function(){
-	// 	$window.location.href = 'index.php';
-	// }
-	// $scope.saveaddplayer = function(){
-	// 	console.log($scope.name)
-	// 	var date =  $filter('date')(new Date($scope.birthday), 'dd-MM-yyyy');
-	// 	var release_date =  $filter('date')(new Date($scope.release_date), 'dd-MM-yyyy');
-	// 	//$scope.birthday = 
-	// 	console.log($scope.date)
-	// 	$http({
-	//                         method : 'POST',
-	//                         url : 'php/addPlayer.php',
-	//                         data: $.param({ 'name': $scope.name, 'birthday': date, 'release_date': release_date}),
-	//                         headers : {'Content-Type': 'application/x-www-form-urlencoded'} 
-	//                 }).success(function(res){
-	//                         console.log(res);
-	//                         if (res == 1) {
-	// //                         //	$window.location.href = 'academy.php';
-	//                         }
-	//                         else{
-	//                         	alert('err')
-	//                         }
+		$http({
+	                        method : 'POST',
+	                        url : 'php/addPlayer.php',
+	                        data: $.param({ 'name': $scope.name
+                                , 'birthday': birthday
+                                , 'release_date': release_date
+                                , 'sign_date': sign_date
+                                , 'weight': $scope.weight
+                                , 'height': $scope.height
+                                , 'foot': $scope.foot
+                                , 'address': $scope.address
+                                , 'position': $scope.position
+                                , 'phone': $scope.phone
+                                , 'team': $scope.team
+                                , 'school': $scope.school
+
+
+
+                            }),
+	                        headers : {'Content-Type': 'application/x-www-form-urlencoded'} 
+	                }).success(function(res){
+	                        console.log(res);
+	                        if (res == 1) {
+	                       $window.location.href = 'academy.php';
+	                        }
+	                        else{
+	                        	alert('err')
+	                        }
+                        });
 	                       
 	                        
 
 
 
 
-	                // }).error(function(error){
-	                //         console.log(error);
-	        // });
 	}
 	// $scope.academyclass = [];
 	// $scope.getacademy = function(x){
