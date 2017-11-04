@@ -162,5 +162,22 @@ app.controller('myCtrl', function($scope,$http,$location,$window ,$filter) {
 	                }).error(function(error){
 	                        console.log(error);
 	        });
+	                $http({
+	                        method : 'POST',
+	                        url : 'php/getplayer.php',
+	                        //data: $.param({name: 1}),
+	                        headers : {'Content-Type': 'application/x-www-form-urlencoded'} 
+	                }).success(function(res){
+	                        console.log(res);
+	                        $scope.detaplayer = res;
+	                        for (var i=0;i<= $scope.detaplayer.length; i++) {
+	                        	console.log($scope.detaplayer[i].name)
+	                    }
+	                        
+
+
+
+
+	               });
 	
 });

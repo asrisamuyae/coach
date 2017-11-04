@@ -348,7 +348,7 @@
                                         <tbody>
                                         	
                                             <tr ng-repeat="item in academyclass">
-                                               	<td><span ng-bind="item.player_name"></span></td>
+                                               	<td><span ng-bind="item.name"></span></td>
 	                                			<td><span ng-bind="item.birthday"></span></td>
 	                                			<td><span ng-bind="item.position"></span></td>
 	                                			<td><span ng-bind="item.school"></span></td>

@@ -24,10 +24,10 @@
 	<!-- angular -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular-cookies.js"></script>	
-	<script src="js/coach.angular.js"></script>
+	<!-- <script src="js/coach.angular.js"></script> -->
 </head>
 
-<body ng-app="myApp" ng-controller="myCtrl">
+<body ng-app="myApp" ng-controller="myCtrl" style="background: #227db2">
 		<div class="navbar-header">
         	<div class="" style="    /* padding: 9px 10px; */
             margin-top: 12px;
@@ -53,44 +53,64 @@
         		
         	</div>
         	</div>
-		<div class="top">
-			<h1 id="title" class=""><span id="logo"><span>COACH GADGETS</span></span></h1>
-		</div>
+		
 		<div class="container">
 		<div class="card-content" style="margin-top: 60px;">
-                                    <h4 class="card-title">DATA COACH</h4>
-                                    <div class="table-responsive">
-                                        <table class="table">
-                                           
-                                                <tr>
-                                                    <th></th>
-                                                    <th>Name</th>
-													<th>Date of birth</th>
-													<th>Address</th>
-													<th>Phone</th>
-													<th>Sign date</th>
-													<th>Release date</th>
-													<th>Team Managed</th>
-													
-                                                </tr>
-                                          
-                                           
-                                                <tr  ng-repeat="item in detaildata">
-                                                    <td class="text-center" ng-bind="$index+1"></td>
-                                                    <td><span ng-bind="item.coach_name"></span></td>
-                                                    <td><span ng-bind="item.DOB"></span></td>
-                                                    <td><span ng-bind="item.address"></span></td>
-                                                    <td><span ng-bind="item.phone"></span></td>
-                                                    <td><span ng-bind="item.sign_date"></span></td>
-                                                    <td><span ng-bind="item.release_date"></span></td>
-                                                    <td><span ng-bind="item.team_id"></span></td>
-                                                    
-                                                </tr>
-                                               
-                                           
-                                        </table>
-									</div>
-                                </div>
+			<div class="row">
+				<div class="col-md-6">
+					<span >man-u</span><div style="border:1px solid #ddd;padding: 15px ">20,000,000</div>
+					<select class="form-control" id="label-addbooking">
+                                                    <option ng-repeat="item in dataplayer" value="">{{item.name}}</option>
+                                              </select>
+				</div>
+				{{}}
+				<div class="col-md-6">
+					<span >sss-u</span><div style="border:1px solid #ddd;padding: 15px ">20,000,000</div>
+					
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div align="center">
+							<div style="    background: #ace8ab;
+    /* width: 800px; */
+    height: 600px;
+    margin-bottom: 30px;
+    margin-top: 30px;">
+       <div>
+       		<table width="100%">
+					 	 	<tr>
+					 	 		<td>0</td>
+					 	 		<td>0</td>
+					 	 	</tr>
+					 	 </table>
+       </div>
+								
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<!-- <div class="row">
+					 <div class="col-md-3">
+					 	<div style="background: #ddd;height: 500px"></div>
+					 </div>
+					 <div class="col-md-6" style="text-align: center;">
+					 	 <table width="100%">
+					 	 	<tr>
+					 	 		<td>0</td>
+					 	 		<td>0</td>
+					 	 	</tr>
+					 	 </table>
+					 </div>
+					 <div class="col-md-3">
+					 	<div style="background: #ddd;height: 500px"></div>
+					 </div>
+					
+				</div> -->
+			</div>
+                                    
+                                    
+        </div>
 		<!-- <table>
 			<tr>
 				<td>Name</td>
@@ -179,6 +199,93 @@
 	$('#password').blur(function() {
 		$('label[for="password"]').removeClass('selected');
 	});
+</script>
+<script>
+	var app = angular.module('myApp', ['ngCookies']);
+app.controller('myCtrl', function($scope,$http,$location,$window) {
+	$scope.test = "TEST";
+	//alert('aaaaa')
+	
+	$scope.login = function(){
+
+		$scope.username = $scope.user;
+		$scope.password = $scope.pass;
+		console.log($scope.username)
+		console.log($scope.password)
+		
+	    var formData = { username: $scope.username, password : $scope.password };
+	                
+	                $http({
+	                        method : 'POST',
+	                        url : 'php/connect.php',
+	                        data: formData,
+	                        headers : {'Content-Type': 'application/x-www-form-urlencoded'}  
+
+	                }).success(function(res){
+	                        console.log(res);
+	                        $scope.lpass = res.password;
+	                        $scope.luser = res.username;
+	                        console.log($scope.lpass);
+	                        console.log($scope.luser);
+	                        if ($scope.luser == $scope.username && $scope.lpass == $scope.password) {
+	                        		console.log("login success")
+	                        	 // $cookieStore.put('dotobject', $scope.lpass);
+	                        	 // $cookieStore.get('dotobject')
+	                        }
+	                        else{
+	                        	console.log("login fail")
+
+	                        }
+
+
+
+
+	                }).error(function(error){
+	                        console.log(error);
+	        });
+	    
+	}
+	$scope.logo = function(){
+		$window.location.href = 'index.php';
+	}
+	$scope.regiscoach = function(){
+		alert("aaaa")
+		console.log($scope.name)
+	}
+	$scope.name = ''
+	$http({
+	                        method : 'POST',
+	                        url : 'php/getplayer.php',
+	                        //data: $.param({name: 1}),
+	                        headers : {'Content-Type': 'application/x-www-form-urlencoded'} 
+	                }).success(function(res){
+	                        console.log(res);
+	                        $scope.detaplayer = res;
+	                        for (var i=0;i<= $scope.detaplayer.length; i++) {
+	                        	console.log($scope.detaplayer[i].name)
+	                    }
+	                        
+
+
+
+
+	               });
+	                // $http({
+	                //         method : 'POST',
+	                //         url : 'php/getmatch.php',
+	                //         //data: $.param({name: 1}),
+	                //         headers : {'Content-Type': 'application/x-www-form-urlencoded'} 
+	                // }).success(function(res){
+	                //         console.log(res);
+	                //         $scope.datamatch = res;
+	                        
+
+
+
+
+	                // });
+	
+});
 </script>
 
 </html>
