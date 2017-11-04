@@ -23,6 +23,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<!-- angular -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular-cookies.js"></script>	
 	<!-- <script src="js/coach.angular.js"></script> -->
 </head>
@@ -60,11 +61,11 @@
 				<div class="col-md-6">
 					<span >man-u</span><div style="border:1px solid #ddd;padding: 15px ">20,000,000</div>
 					<select class="form-control" id="label-addbooking">
-                                                    <option ng-repeat="item in dataplayer" value="">{{item.name}}</option>
+                                                    <option ng-repeat="item in dataplayer" value="">{{}}</option>
                                               </select>
 				</div>
 				{{}}
-				<div class="col-md-6">
+				<div class="col-md-6" ng-repeat="item in dataplayer">
 					<span >sss-u</span><div style="border:1px solid #ddd;padding: 15px ">20,000,000</div>
 					
 				</div>
@@ -262,7 +263,7 @@ app.controller('myCtrl', function($scope,$http,$location,$window) {
 	                        console.log(res);
 	                        $scope.detaplayer = res;
 	                        for (var i=0;i<= $scope.detaplayer.length; i++) {
-	                        	console.log($scope.detaplayer[i].name)
+	                        	//console.log($scope.detaplayer[i].name)
 	                    }
 	                        
 
