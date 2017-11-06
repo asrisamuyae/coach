@@ -1,13 +1,12 @@
-<?php
+<?
 include("../config.php");
-
-	$sql = "select * FROM player";
-	//$sql = "select * FROM coach WHERE coach_id = '".$_POST[name]."'";
-
+	// $class = $_POST[classs];
+	$sql = 'select * from player WHERE team_id = "'.$_POST[id].'" ORDER BY player_name ASC';
+	// $sql = 'select * from player where team_class = "'.$class.'"';
 	$Objquery = mysql_query($sql,$conndb);
 	//echo $Objquery;
 	//$row = mysql_num_rows($Objquery); // นับจำนวนแถว
-//$rows = array();
+$rows = array();
 	if(mysql_num_rows($Objquery) > 0){
 		//$result = mysql_fetch_array($Objquery);
 		

@@ -186,6 +186,9 @@
                                     </table>
                                 </div>
                             </div>
+                            <select class="form-control" ng-change="changeowner(selectowner)" id="label-addbooking" ng-model="selectowner" data-ng-options="i as i.player_name for i in academyclass" >
+                                                    <option value="">- None -</option>
+                                              </select>
                                 	<!-- <table>
                                 		<tr>
                                 			<td>player_name</td>

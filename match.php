@@ -58,56 +58,71 @@
 		<div class="container">
 		<div class="card-content" style="margin-top: 60px;">
 			<div class="row">
-				<div class="col-md-6">
-					<span >man-u</span><div style="border:1px solid #ddd;padding: 15px ">20,000,000</div>
-					<select class="form-control" id="label-addbooking">
-                                                    <option ng-repeat="item in dataplayer" value="">{{}}</option>
-                                              </select>
-				</div>
-				{{}}
-				<div class="col-md-6" ng-repeat="item in dataplayer">
-					<span >sss-u</span><div style="border:1px solid #ddd;padding: 15px ">20,000,000</div>
+				<div class="col-md-12">
+					<div class="col-md-12" style="margin-bottom: 30px;padding-left: 0">
+						<select class="form-control" ng-change="changTeamclass(selectclass)" id="label-addbooking" ng-model="selectclass" data-ng-options="i as i.class for i in dataclass"  style="width: 155px;
+    display: inline-block;
+    height: 50px;
+    margin-right: 10px;">
+                            <option value="">- Class -</option>
+                         </select>
+						<div style="padding: 15px;
+    background: #fff;
+    display: inline-block;
+    border-radius: 4px;
+    width: 200px;">20,000,000</div>
+
+					</div>
+					
 					
 				</div>
+			
+				
 				<div class="row">
-					<div class="col-md-12">
-						<div align="center">
-							<div style="    background: #ace8ab;
-    /* width: 800px; */
-    height: 600px;
+					<div class="col-md-12" style="margin-top: 30px;">
+						 <div class="col-md-3">
+					 	<ul style="list-style: none;background: #fff;padding: 20px;border-radius: 4px ">
+					 	 	<li ng-repeat="item in datateam" style="padding: 8px 0;"><span ng-bind="$index+1+' '+item.player_name"></span></li>
+					 	 </ul>
+					 </div>
+						<div class="col-md-6" align="center">
+							<div style="background-image: url(./images/bg.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 455px;
     margin-bottom: 30px;
-    margin-top: 30px;">
-       <div>
-       		<table width="100%">
-					 	 	<tr>
-					 	 		<td>0</td>
-					 	 		<td>0</td>
-					 	 	</tr>
-					 	 </table>
-       </div>
-								
+    background-size: 100%;
+    margin-top: -45px;">
+       
+								<div class="GK"></div>
+								<div class="CB1"></div>
+								<div class="CB2"></div>
+								<div class="CB3"></div>
+								<div class="RB"></div>
+								<div class="LB"></div>
+								<div class="DMF"></div>
+								<div class="CMF1"></div>
+								<div class="CMF2"></div>
+								<div class="RMF"></div>
+								<div class="LMF"></div>
+								<div class="AMF"></div>
+								<div class="RW"></div>
+								<div class="LW"></div>
+								<div class="ST"></div>
+								<div class="CF1"></div>
+								<div class="CF2"></div>
+								<div class="CF3"></div>
 							</div>
 
 						</div>
+						 <div class="col-md-3">
+					 	<ul style="list-style: none;background: #fff;padding: 20px;border-radius: 4px">
+					 	 	<!-- <li ng-repeat="item in datateam"><span ng-bind="$index+1+' '+item.player_name"></span></li> -->
+					 	 </ul>
+					 </div>
 					</div>
 				</div>
-				<!-- <div class="row">
-					 <div class="col-md-3">
-					 	<div style="background: #ddd;height: 500px"></div>
-					 </div>
-					 <div class="col-md-6" style="text-align: center;">
-					 	 <table width="100%">
-					 	 	<tr>
-					 	 		<td>0</td>
-					 	 		<td>0</td>
-					 	 	</tr>
-					 	 </table>
-					 </div>
-					 <div class="col-md-3">
-					 	<div style="background: #ddd;height: 500px"></div>
-					 </div>
-					
-				</div> -->
+				
 			</div>
                                     
                                     
@@ -152,60 +167,15 @@
 	</div>
 </body>
 
-<script>
-	$(document).ready(function () {
-    	$('#logo').addClass('animated fadeInDown');
-    	$("input:text:visible:first").focus();
 
-    	$("#submit").click(function(event) {
-    		/* Act on the event */
-    	});
-    // 	$("#submit").click(function(){
-    // 		var pass = $("#password").val()
-    // 		var username = $("#username").val()
-    // 		//alert("The paragraph was clicked.");
-    // 		console.log(username)
-    // 		console.log(pass)
-    // 		var markers = [{ "position": "128.3657142857143", "markerPosition": "7" },
-    //            { "position": "235.1944023323615", "markerPosition": "19" },
-    //            { "position": "42.5978231292517", "markerPosition": "-3" }];
-
-    // 		$.ajax({
-		  //       url: "php/connect.php",
-		  //       type: "post",
-		  //       data: JSON.stringify({ username: markers}),
-		  //       contentType: "application/json; charset=utf-8", 
-		  //       dataType: "json",
-			 //    success: function(data){
-			 //    	alert(data);
-			 //    },
-			 //    failure: function(errMsg) {
-			 //        alert(errMsg);
-			 //    }
-
-
-    // });
-
-		//});
-	});
-	$('#username').focus(function() {
-		$('label[for="username"]').addClass('selected');
-	});
-	$('#username').blur(function() {
-		$('label[for="username"]').removeClass('selected');
-	});
-	$('#password').focus(function() {
-		$('label[for="password"]').addClass('selected');
-	});
-	$('#password').blur(function() {
-		$('label[for="password"]').removeClass('selected');
-	});
-</script>
 <script>
 	var app = angular.module('myApp', ['ngCookies']);
 app.controller('myCtrl', function($scope,$http,$location,$window) {
 	$scope.test = "TEST";
 	//alert('aaaaa')
+	// $scope.datateam = new Array();
+	// $scope.dataclass = new Array();
+
 	
 	$scope.login = function(){
 
@@ -253,24 +223,58 @@ app.controller('myCtrl', function($scope,$http,$location,$window) {
 		alert("aaaa")
 		console.log($scope.name)
 	}
-	$scope.name = ''
-	$http({
+	$scope.changTeamclass = function(x){
+		console.log(x)
+		$http({
 	                        method : 'POST',
-	                        url : 'php/getplayer.php',
-	                        //data: $.param({name: 1}),
+	                        url : 'php/getPlayerbyid.php',
+	                        data: $.param({'id': x.id}),
 	                        headers : {'Content-Type': 'application/x-www-form-urlencoded'} 
 	                }).success(function(res){
 	                        console.log(res);
-	                        $scope.detaplayer = res;
-	                        for (var i=0;i<= $scope.detaplayer.length; i++) {
-	                        	//console.log($scope.detaplayer[i].name)
-	                    }
+	                        $scope.datateam = res
+	                        
+
+	                        //$scope.dataclass = res;
+	                    //     for (var i=0;i<= res.length; i++) {
+	                    //     	$scope.dataclass.push(res[i])
+	                    // }
 	                        
 
 
 
 
 	               });
+	}
+   
+	$scope.name = ''
+	$http({
+	                        method : 'POST',
+	                        url : 'php/getClassteam.php',
+	                        //data: $.param({name: 1}),
+	                        headers : {'Content-Type': 'application/x-www-form-urlencoded'} 
+	                }).success(function(res){
+	                        console.log(res);
+	                        $scope.dataclass = res
+	        //                 angular.forEach(res, function(data, key){
+						   //    //if(value.Password == "thomasTheKing")
+						   //       //console.log("username is thomas");
+						   //       $scope.dataclass.push(data)
+
+						   // });
+	                        console.log($scope.dataclass)
+
+	                        //$scope.dataclass = res;
+	                    //     for (var i=0;i<= res.length; i++) {
+	                    //     	$scope.dataclass.push(res[i])
+	                    // }
+	                        
+
+
+
+
+	               });
+	                console.log($scope.dataclass)
 	                // $http({
 	                //         method : 'POST',
 	                //         url : 'php/getmatch.php',
@@ -288,5 +292,168 @@ app.controller('myCtrl', function($scope,$http,$location,$window) {
 	
 });
 </script>
-
+<style >
+	.GK{
+		position: absolute;
+    width: 25px;
+    height: 25px;
+    background: #fff;
+    border-radius: 50%;
+    margin-top: 213px;
+    margin-left: 45px;
+	}
+	.CB1 {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: #fff;
+    border-radius: 50%;
+    margin-top: 213px;
+    margin-left: 117px;
+	}
+	.CB2 {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: #fff;
+    border-radius: 50%;
+    margin-top: 308px;
+    margin-left: 117px;
+	}
+	.CB3 {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: #fff;
+    border-radius: 50%;
+    margin-top: 124px;
+    margin-left: 117px;
+	}
+	.RB {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: #fff;
+    border-radius: 50%;
+    margin-top: 396px;
+    margin-left: 146px;
+	}
+	.LB {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: #fff;
+    border-radius: 50%;
+    margin-top: 32px;
+    margin-left: 146px;
+	}
+	.DMF {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: #fff;
+    border-radius: 50%;
+    margin-top: 213px;
+    margin-left: 259px;
+	}
+	.CMF1{
+		position: absolute;
+    width: 25px;
+    height: 25px;
+    background: #fff;
+    border-radius: 50%;
+    margin-top: 213px;
+    margin-left: 45px;
+	}
+	.CMF2{
+		position: absolute;
+    width: 25px;
+    height: 25px;
+    background: #fff;
+    border-radius: 50%;
+    margin-top: 213px;
+    margin-left: 45px;
+	}
+	.RMF{
+		position: absolute;
+    width: 25px;
+    height: 25px;
+    background: #fff;
+    border-radius: 50%;
+    margin-top: 213px;
+    margin-left: 45px;
+	}
+	.LMF{
+		position: absolute;
+    width: 25px;
+    height: 25px;
+    background: #fff;
+    border-radius: 50%;
+    margin-top: 213px;
+    margin-left: 45px;
+	}
+	.AMF{
+		position: absolute;
+    width: 25px;
+    height: 25px;
+    background: #fff;
+    border-radius: 50%;
+    margin-top: 213px;
+    margin-left: 45px;
+	}
+	.RW{
+		position: absolute;
+    width: 25px;
+    height: 25px;
+    background: #fff;
+    border-radius: 50%;
+    margin-top: 213px;
+    margin-left: 45px;
+	}
+	.LW{
+		position: absolute;
+    width: 25px;
+    height: 25px;
+    background: #fff;
+    border-radius: 50%;
+    margin-top: 213px;
+    margin-left: 45px;
+	}
+	.ST{
+		position: absolute;
+    width: 25px;
+    height: 25px;
+    background: #fff;
+    border-radius: 50%;
+    margin-top: 213px;
+    margin-left: 45px;
+	}
+	.CF1{
+		position: absolute;
+    width: 25px;
+    height: 25px;
+    background: #fff;
+    border-radius: 50%;
+    margin-top: 213px;
+    margin-left: 45px;
+	}
+	.CF2{
+		position: absolute;
+    width: 25px;
+    height: 25px;
+    background: #fff;
+    border-radius: 50%;
+    margin-top: 213px;
+    margin-left: 45px;
+	}
+	.CF3{
+		position: absolute;
+    width: 25px;
+    height: 25px;
+    background: #fff;
+    border-radius: 50%;
+    margin-top: 213px;
+    margin-left: 45px;
+	}
+</style>
 </html>
