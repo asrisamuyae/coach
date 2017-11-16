@@ -140,7 +140,7 @@
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 
 <script src="js/jquery/demo.js"></script>
-	<script src="js/academy.angular.js"></script>
+	<!-- <script src="js/academy.angular.js"></script> -->
 </head>
 
 <body ng-app="myApp" ng-controller="myCtrl">
@@ -187,26 +187,38 @@
                                         
                                         
                                         <div class="form-group form-inline">
-                                                <label class="control-label " id="label-addplayer">position</label>
-                                                <input type="text" class="form-control" size="100" ng-model="position">
+                                                <label class="control-label " id="label-addplayer">Position</label>
+                                                <!-- <select ng-model="position" ng-change="position()">
+                                                  <option ng-repeat="i in dataposition" ng-value="i" ><span ng-bind="i"> </span></option>
+                                                  
+                                                </select> -->
+                                                 <select class="form-control" id="position" ng-model="posi" ng-change="changePosition(posi.position)" data-ng-options="i as i.position for i in dataposition">
+                                                    <option value="">- none -</option>            
+                                                    <!-- <option ng-value="i.position">{{i.position}}</option>             -->
+                                                </select>
+                                                <!-- <input type="text" class="form-control" size="100" ng-model="position"> -->
                                             </div>
                                         
                                         
                                             
                                             <div class="form-group form-inline">
                                                 <label class="control-label " id="label-addplayer">Foot</label>
-                                                <input type="text" class="form-control " size="100" ng-model="foot">
+                                                <select class="form-control" id="foot" ng-model="foo" ng-change="changeFoot(foo.foot)" data-ng-options="i as i.foot for i in datafoot">
+                                                    <option value="">- none -</option>            
+                                                    <!-- <option ng-value="i.position">{{i.position}}</option>             -->
+                                                </select>
+                                                <!-- <input type="text" class="form-control " size="100" ng-model="foot"> -->
                                             </div>
                                        
                                         
                                            
                                             <div class="form-group form-inline">
-                                                <label class="control-label " id="label-addplayer">Height</label>
+                                                <label class="control-label " id="label-addplayer">Height (cm)</label>
                                                 <input type="text" class="form-control" size="100" ng-model="height">
                                             </div>
 
                                             <div class="form-group form-inline">
-                                                <label class="control-label " id="label-addplayer">Weight</label>
+                                                <label class="control-label " id="label-addplayer">Weight (kg)</label>
                                                 <input type="text" class="form-control" size="100" ng-model="weight">
                                             </div>
                                         
@@ -227,7 +239,11 @@
 
                                             <div class="form-group form-inline">
                                                 <label class="control-label " id="label-addplayer">Team</label>
-                                                <input type="text" class="form-control" size="100" ng-model="team">
+                                                <select class="form-control" id="position" ng-model="sendclass" ng-change="changeClass(sendclass)" data-ng-options="i as i.class for i in dataclass">
+                                                    <option value="">- none -</option>            
+                                                    <!-- <option ng-value="i.position">{{i.position}}</option>             -->
+                                        </select>
+                                                <!-- <input type="text" class="form-control" size="100" ng-model="team"> -->
                                             </div>
                                             
                                             <div class="form-group form-inline">
@@ -449,6 +465,10 @@ app.controller('myCtrl', function($scope,$http,$location,$window,$filter) {
 	var today = new Date();
 	var date =  new Date(today.getFullYear()+'-'+(today.getMonth()+1)+'-1');
 	// $scope.birthday = date;
+    $scope.dataposition = [{position:'GK'},{position:'CB'},{position:'RB'},{position:'LB'},{position:'DMF'},{position:'CMF'},{position:'LMF'},{position:'AMF'},{position:'RW'},{position:'LW'},{position:'SS'},{position:'CF'}];
+    $scope.datafoot = [{foot:'Right'},{foot:'Left'},{foot:'Both'}];
+    console.log($scope.datafoot)
+    console.log($scope.dataposition)
 	console.log($scope.birthday)
 	$scope.login = function(){
 
@@ -490,13 +510,38 @@ app.controller('myCtrl', function($scope,$http,$location,$window,$filter) {
 	        // });
 	    
 	}
-		$scope.logo = function(){
+    $http({
+                            method : 'POST',
+                            url : 'php/getClassteam.php',
+                            // data: formData,
+                            headers : {'Content-Type': 'application/x-www-form-urlencoded'}  
+
+                    }).success(function(res){
+                        $scope.dataclass = res;
+                        console.log($scope.dataclass)
+                    });
+	$scope.logo = function(){
 		$window.location.href = 'index.php';
 	}
 	$scope.changename = function(x){
 		$scope.cname = x;
 		console.log($scope.cname)
 	}
+    $scope.changePosition = function(x){
+        console.log(x)
+        $scope.position = x;
+        console.log($scope.position)
+    }
+    $scope.changeFoot = function(x){
+        console.log(x)
+        $scope.foot = x;
+        console.log($scope.foot)
+    }
+    $scope.changeClass = function(x){
+        console.log(x)
+        $scope.team = x.class;
+        console.log($scope.team)
+    }
 	$scope.saveaddplayer = function(){
 		console.log($scope.name)
 		var date =  $filter('date')(new Date($scope.birthday), 'dd-MM-yyyy');
