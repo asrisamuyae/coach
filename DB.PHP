@@ -140,3 +140,29 @@ INSERT INTO `player` VALUES (19, 'Nazreen Sama', 'LB', '2006-02-02', 'Kanarat Ba
 INSERT INTO `player` VALUES (20, 'Nasruddin Dahami', 'RMF', '2006-03-09', 'Kanarat Bamrung, Yala', 148, 47, 'Right', 'Than To, Yala', '0604403530', '2015-01-01', '2018-01-01', 2, 'U-11', 0, 0, 0, 0);
 INSERT INTO `player` VALUES (21, 'Shareef Sapsin', 'CMF', '2006-06-07', 'Stree, Yala', 145, 45, 'Right', 'Muang, Yala', '0977202024', '2015-01-01', '2018-01-01', 2, 'U-11', 0, 0, 0, 0);
 INSERT INTO `player` VALUES (22, 'Pakkawan Kaewprom', 'CF', '2006-03-18', 'Kanarat Bamrung, Yala', 142, 40, 'Left', 'Muang, Yala', '0915512500', '2015-01-01', '2018-01-01', 2, 'U-11', 0, 0, 0, 0);
+
+
+-- --------------------------------------------------------
+
+-- 
+-- Table structure for table `fixtures`
+-- 
+
+CREATE TABLE `fixtures` (
+  `id` int(7) NOT NULL,
+  `home` varchar(50) collate utf8_unicode_ci NOT NULL,
+  `away` varchar(50) collate utf8_unicode_ci NOT NULL,
+  `timed` date NOT NULL,
+  `competition` varchar(100) collate utf8_unicode_ci NOT NULL,
+  `id_team` int(7) NOT NULL,
+  `id_class` int(7) NOT NULL,
+  `post_date` date NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- 
+-- Dumping data for table `fixtures`
+-- 
+
+
+
